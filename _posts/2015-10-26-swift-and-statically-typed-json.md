@@ -12,6 +12,8 @@ I thought about trying to apply it to using JSON. I'm just starting to learn abo
 
 The main idea here, is that maybe we don't need to transform our JSON dictionaries to a custom struct to get static typing, maybe we can just use the dictionary with statically-typed accessors.
 
+Remember, this is just a thought excersice, there are already lots of ways of handling JSON in Swift.
+
 ## The idea
 
 Given a simple JSON like this:
@@ -93,7 +95,7 @@ A sad workaround would be to use computed properties. You lose the terseness of 
 
 #### Subscripts don't support generic types (yet?).
 That means ```subscript<T>(key: Key<Self, T>) -> T?``` won't work.
-I can see two possible ways to deal with this, either we define all the possible cases of subscripts' arguments, which means everytime we create a model that can be nested in others, we must extend Modelable with the new subscript. Or we just don't use subscripts and just use a normal function. Some may argue that another problem with subscripts is that they can't throw, so 
+I can see two possible ways to deal with this, either we define all the possible cases of subscripts' arguments, which means everytime we create a model that can be nested in others, we must extend Modelable with the new subscript. Or we just don't use subscripts and just use a normal function. Some may argue that another problem with subscripts is that they can't throw, so if we'll use a normal function, let's make it throw.
 
 
 	enum ModelableErrors:ErrorType { case NothingInKey, CouldNotCast }
