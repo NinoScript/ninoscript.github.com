@@ -9,6 +9,7 @@ function boxSvg(width, height, depth) {
     const x3 = x2 + 59.5 + delta_width;
     const x4 = x3 + 59.6 + delta_depth;
     const x5 = x4 + 59.6 + delta_width;
+    const x6 = x5 + 40;
 
     // horizontales derivadas
     const horizontalThickness1 = 14.2;
@@ -21,6 +22,7 @@ function boxSvg(width, height, depth) {
     // verticales
     const y1 = 99.1;
     const y2 = y1 + height;
+    const y3 = y2 + 100;
 
     // verticales derivadas
     const verticalThickness1 = 58.1;
@@ -86,7 +88,7 @@ function boxSvg(width, height, depth) {
         + ' xmlns:xlink="http://www.w3.org/1999/xlink"'
         + ' x="0px"'
         + ' y="0px"'
-        + ' viewBox="0 0 1000 700"'
+        + ` viewBox="0 0 ${x6} ${y3}"`
         + ' style="enable-background:new 0 0 311.8 311.8;"'
         + ' xml:space="preserve">'
         ;
