@@ -50,7 +50,6 @@ function boxSvg(width, height, depth) {
         + `<path class="cut"  d="M${h2},${v3}v-2.8"/>`
         + `<path class="cut"  d="M${x2},${v5}v3.3c0,0.2,0,0.3,0.1,0.5l2.1,8.2h10.6c0.8,0,1.4-0.6,1.4-1.4"/>`
         + `<path class="fold" d="M${h2},${v3}h${h1 + delta_width - delta_depth}"/>`
-        // + `<path class="cut"  d="M${h3},${v3}c0,0.8,0.6,1.4,1.4,1.4h10.6l2.1-8.2c0-0.2,0.1-0.3,0.1-0.5v-50.8"/>`
         + `<path class="cut"  d="M${h3},${v3}c0,0.8,0.6,1.4,1.4,1.4h10.6l2.1-8.2c0-0.2,0.1-0.3,0.1-0.5"/>`
         + `<path class="cut"  d="M${x3},${y2}v${delta_depth + 50.8}"/>`
         + `<path class="cut"  d="M${h4},${v4}c0,14.2-7.8,18.7-20.1,23.9c-2.4,1-4.9,1.5-7.5,1.5h${-delta_width}c-2.6,0-5.1-0.5-7.5-1.5c-12.3-5.2-20.1-9.7-20.1-23.9"/>`
@@ -81,6 +80,16 @@ function boxSvg(width, height, depth) {
         + `<path class="cut"  d="M${x4},${y1}h2.2"/>`
         ;
 
+    // css const will contain the css string for the classes .cut and .fold, gotten from the html <style> tag
+    const css = document.querySelector('style').innerHTML;
+    function getCssClass(className) {
+        return css
+            .match(new RegExp(`\\.${className}\\s*{[^}]*}`))[0]
+            .replace(/[ \t\n]/g, '');
+    }
+    const cutCss = getCssClass('cut');
+    const foldCss = getCssClass('fold');
+
     const header = ''
         + '<?xml version="1.0" encoding="utf-8"?>'
         + '<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) -->'
@@ -93,6 +102,7 @@ function boxSvg(width, height, depth) {
         + ` viewBox="0 0 ${x6} ${y3}"`
         + ' style="enable-background:new 0 0 311.8 311.8;"'
         + ' xml:space="preserve">'
+        + `<style type="text/css">${cutCss}${foldCss}</style>`
         ;
     const footer = '</svg>';
 
@@ -127,7 +137,7 @@ function onInput() {
     const svg = makeSvg();
 
     svgdiv.innerHTML = svg;
-    svgcode.value = svg;
+    svgcode.value = svg.replace(/stroke: #999999/, 'stroke: #000000');
 }
 
 widthSlider.addEventListener('input', onInput);
