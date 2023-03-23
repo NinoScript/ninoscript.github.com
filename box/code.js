@@ -103,7 +103,6 @@ function makeSvg() {
     const height = +heightSlider.value;
     const width = +widthSlider.value;
     const depth = +depthSlider.value;
-    console.log(width, height, depth);
     return boxSvg(width, height, depth);
 }
 
@@ -121,11 +120,6 @@ heightSlider.value = urlParams.get('height') ?? heightSlider.value;
 depthSlider.value = urlParams.get('depth') ?? depthSlider.value;
 
 function onInput() {
-    urlParams.set('width', widthSlider.value);
-    urlParams.set('height', heightSlider.value);
-    urlParams.set('depth', depthSlider.value);
-    window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-
     const svg = makeSvg();
 
     svgdiv.innerHTML = svg;
@@ -135,4 +129,18 @@ function onInput() {
 widthSlider.addEventListener('input', onInput);
 heightSlider.addEventListener('input', onInput);
 depthSlider.addEventListener('input', onInput);
+
+function onChange() {
+    urlParams.set('width', widthSlider.value);
+    urlParams.set('height', heightSlider.value);
+    urlParams.set('depth', depthSlider.value);
+    window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    console.log(`saved to URL params: ${urlParams}`);
+}
+
+widthSlider.addEventListener('change', onChange);
+heightSlider.addEventListener('change', onChange);
+depthSlider.addEventListener('change', onChange);
+
+onChange();
 onInput();
