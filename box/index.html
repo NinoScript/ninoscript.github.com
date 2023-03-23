@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="dark">
+    <style type="text/css">
+        .cut {
+            fill: none;
+            /* stroke: #000000; */
+            stroke: #999999;
+            stroke-width: 0.75;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+        }
+
+        .fold {
+            fill: none;
+            stroke: #C20E1A;
+            stroke-width: 0.75;
+            stroke-linejoin: round;
+            stroke-miterlimit: 10;
+            stroke-dasharray: 7, 2, 2, 2;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>box</title>
+</head>
+
+<body>
+    <label for="width-slider">Width:</label>
+    <input type="range" id="width-slider" name="width" min="60" max="200" value="59.5"><br>
+
+    <label for="height-slider">Height:</label>
+    <input type="range" id="height-slider" name="height" min="40" max="200" value="113.4"><br>
+
+    <label for="depth-slider">Depth:</label>
+    <input type="range" id="depth-slider" name="depth" min="50" max="200" value="58.1"><br>
+
+    <label for="svgcode">SVG Code:</label>
+    <textarea id="svgcode" cols="200" rows="8"></textarea><br>
+    <input type="button" id="copy" value="Copy SVG" />
+
+    <div id="svgdiv"></div>
+
+    <script src="code.js"></script>
+</body>
+
+</html>
