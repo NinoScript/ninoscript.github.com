@@ -20,37 +20,39 @@ function boxSvg(width, height, depth) {
     const h4 = x3 - 2.2; // por qué este no es simétrico con h1? hubiese esperado que fuera x3 + horizontalThickness2
 
     // verticales
-    const y1 = 99.1;
+    const y1 = 99.1 + delta_depth;
     const y2 = y1 + height;
-    const y3 = y2 + 100;
+    const y3 = y2 + 400 + delta_depth;
 
     // verticales derivadas
     const verticalThickness1 = 58.1;
     const verticalThickness2 = 59.5;
     const verticalThickness3 = 47.5;
-    const v0 = y1 - verticalThickness3;
-    const v1 = y1 - verticalThickness2;
-    const v2 = y1 - verticalThickness1;
-    const v3 = y2 + verticalThickness1;
-    const v4 = y2 + verticalThickness2;
-    const v5 = y2 + verticalThickness3;
+    const v0 = y1 - verticalThickness3 - delta_depth;
+    const v1 = y1 - verticalThickness2 - delta_depth;
+    const v2 = y1 - verticalThickness1 - delta_depth;
+    const v3 = y2 + verticalThickness1 + delta_depth;
+    const v4 = y2 + verticalThickness2 + delta_depth;
+    const v5 = y2 + verticalThickness3 + delta_depth;
 
     const body = ''
         // arriba
-        + `<path class="cut"  d="M${x2},${y1}v-47.4"/>`
+        + `<path class="cut"  d="M${x2},${y1}v-${verticalThickness3 + delta_depth}"/>`
         + `<path class="cut"  d="M${h2},${v2}v2.8"/>`
         + `<path class="cut"  d="M${x2},${v0}v-3.3c0-0.2,0-0.3,0.1-0.5l2.1-8.2h10.6c0.8,0,1.4,0.6,1.4,1.4"/>`
         + `<path class="cut"  d="M${h4},${v1}c0-14.2-7.8-18.7-20.1-23.9c-2.4-1-4.9-1.5-7.5-1.5h${-delta_width}c-2.6,0-5.1,0.5-7.5,1.5c-12.3,5.2-20.1,9.7-20.1,23.9"/>`
         + `<path class="fold" d="M${h2},${v2}h${h1 + delta_width - delta_depth}"/>`
-        + `<path class="cut"  d="M${x3},${y1}v-47.4"/>`
+        + `<path class="cut"  d="M${x3},${y1}v-${verticalThickness3 + delta_depth}"/>`
         + `<path class="cut"  d="M${h3},${v2}v2.8"/>`
         + `<path class="cut"  d="M${h3},${v2}c0-0.8,0.6-1.4,1.4-1.4h10.6l2.1,8.2c0,0.2,0.1,0.3,0.1,0.5v3.3"/>`
         // abajo
-        + `<path class="cut"  d="M${x2},${y2}v47.5"/>`
+        + `<path class="cut"  d="M${x2},${y2}v${verticalThickness3 + delta_depth}"/>`
         + `<path class="cut"  d="M${h2},${v3}v-2.8"/>`
         + `<path class="cut"  d="M${x2},${v5}v3.3c0,0.2,0,0.3,0.1,0.5l2.1,8.2h10.6c0.8,0,1.4-0.6,1.4-1.4"/>`
         + `<path class="fold" d="M${h2},${v3}h${h1 + delta_width - delta_depth}"/>`
-        + `<path class="cut"  d="M${h3},${v3}c0,0.8,0.6,1.4,1.4,1.4h10.6l2.1-8.2c0-0.2,0.1-0.3,0.1-0.5v-50.8"/>`
+        // + `<path class="cut"  d="M${h3},${v3}c0,0.8,0.6,1.4,1.4,1.4h10.6l2.1-8.2c0-0.2,0.1-0.3,0.1-0.5v-50.8"/>`
+        + `<path class="cut"  d="M${h3},${v3}c0,0.8,0.6,1.4,1.4,1.4h10.6l2.1-8.2c0-0.2,0.1-0.3,0.1-0.5"/>`
+        + `<path class="cut"  d="M${x3},${y2}v${delta_depth + 50.8}"/>`
         + `<path class="cut"  d="M${h4},${v4}c0,14.2-7.8,18.7-20.1,23.9c-2.4,1-4.9,1.5-7.5,1.5h${-delta_width}c-2.6,0-5.1-0.5-7.5-1.5c-12.3-5.2-20.1-9.7-20.1-23.9"/>`
         + `<path class="cut"  d="M${h3},${v3}v-2.8"/>`
         // atras
